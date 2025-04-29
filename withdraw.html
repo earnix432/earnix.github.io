@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Withdraw - Earnix</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #000;
+      color: #0f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #0f0;
+      font-size: 28px;
+      margin-bottom: 40px;
+    }
+
+    .form-container {
+      width: 100%;
+      max-width: 600px;
+      background-color: #111;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(0, 255, 0, 0.3);
+    }
+
+    iframe {
+      width: 100%;
+      height: 600px;
+      border: none;
+      border-radius: 12px;
+    }
+
+    .back-link {
+      margin-top: 40px;
+      color: #6f6;
+      text-decoration: underline;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .back-link:hover {
+      color: #0f0;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Withdraw Earnings</h1>
+
+  <div class="form-container">
+    <!-- Embed Google Form here -->
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSepqF_Y1zMil_Lz3pjuiw9CDoq5B7zmExnf72JTQsYuIhMCbA/viewform?usp=header"></iframe>
+  </div>
+
+  <div class="back-link" onclick="goBack()">← Back to Dashboard</div>
+
+  <script>
+    function goBack() {
+      window.location.href = "dashboard.html";
+    }
+  </script>
+
+</body>
+</html>

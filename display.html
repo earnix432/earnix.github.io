@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Show EarnixAuth</title>
+  <style>
+    body {
+      background-color: #000;
+      color: #0f0;
+      font-family: monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      padding: 20px;
+    }
+    pre {
+      border: 1px solid #0f0;
+      padding: 20px;
+      background-color: #111;
+      border-radius: 10px;
+      max-width: 600px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>EarnixAuth Data</h1>
+  <pre id="authDisplay">Loading...</pre>
+
+  <script>
+    const authData = localStorage.getItem("EarnixAuth");
+    const display = document.getElementById("authDisplay");
+
+    if (authData) {
+      try {
+        const parsed = JSON.parse(authData);
+        display.textContent = JSON.stringify(parsed, null, 2);
+      } catch (e) {
+        display.textContent = "Invalid JSON format in EarnixAuth.";
+      }
+    } else {
+      display.textContent = "EarnixAuth not found.";
+    }
+  </script>
+</body>
+</html>

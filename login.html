@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #000;
+      color: #0f0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    .login-box {
+      background-color: #111;
+      padding: 20px;
+      border: 2px solid #0f0;
+      border-radius: 10px;
+      box-shadow: 0 0 10px #0f0;
+      width: 300px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #0f0;
+      background: #222;
+      color: #0f0;
+      border-radius: 5px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #0f0;
+      color: #000;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0c0;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Login</h1>
+  <div class="login-box">
+    <input type="text" id="account_id" placeholder="Account ID" required />
+    <input type="text" id="access_code" placeholder="Access Code" required />
+    <button onclick="login()">Login</button>
+  </div>
+
+  <script>
+    // Step 1: Check if EarnAuth exists in localStorage (skip redirect for login)
+    const existingAuth = localStorage.getItem("EarnAuth");
+
+    // Step 2: On login button click
+    async function login() {
+      const accountId = document.getElementById("account_id").value.trim();
+      const accessCode = document.getElementById("access_code").value.trim();
+
+      if (!accountId || !accessCode) {
+        alert("Please fill in both fields.");
+        return;
+      }
+
+      try {
+        // Step 3: Fetch earnixdata.json
+        const response = await fetch("earnixdata.json");
+        const data = await response.json();
+
+        // Step 4: Search for matching account_id
+        const user = data.users.find(u => u.account_id === accountId);
+
+        if (!user) {
+          // Step 8: Account not found
+          alert("Account not found.");
+          return;
+        }
+
+        // Step 5: Check access code
+        if (user.access_code !== accessCode) {
+          // Step 7: Incorrect password
+          alert("Incorrect access code.");
+          return;
+        }
+
+        // Step 6: Save user data and redirect
+        localStorage.setItem("EarnixAuth", JSON.stringify(user));
+        window.location.href = "dashboard.html";
+
+      } catch (err) {
+        console.error(err);
+        alert("Error accessing data file.");
+      }
+    }
+  </script>
+
+</body>
+</html>
