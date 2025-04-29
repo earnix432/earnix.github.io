@@ -17,6 +17,15 @@
         "email": "jane.smith@example.com",
         "level": "premium",
         "balance": 2500.00
+      },
+{
+        "account_id": "789012",
+        "name": "Jane Smith",
+        "access_code": "X9Y8Z7W6",
+        "phone_number": "+0987654321",
+        "email": "jane.smith@example.com",
+        "level": "premium",
+        "balance": 2500.00
       }
     ]
   }
